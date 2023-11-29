@@ -19,8 +19,7 @@ class UserRepository
             $query->where('user_scores.level', $levelDto->level);
         }
 
-        return $query
-            ->get()
-            ->random();
+        $result = $query->get();
+        return $result->count() ? $result->random() : null;
     }
 }

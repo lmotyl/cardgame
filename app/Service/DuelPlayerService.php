@@ -34,7 +34,6 @@ class DuelPlayerService
         $index =  $duelPlayers->search(function ($item) use ($user) {
             return $item->user_id != $user->id;
         });
-        var_dump($duelPlayers->toArray(), $index);
 
         return $duelPlayers[$index];
     }

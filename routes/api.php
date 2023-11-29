@@ -15,88 +15,26 @@ use App\Http\Controllers\Api\Authorization\LoginController;
 |
 */
 
-Route::post('login', [LoginController::class, 'login']);
+Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //START THE DUEL
-    Route::post('duels', [\App\Http\Controllers\Api\DuelController::class, 'create']
-
-//        function (Request $request) {
-//       return response()->json();
-//    }
-    );
+    Route::post('duels', [\App\Http\Controllers\Api\DuelController::class, 'create'])->name('duels.create');
 
     //CURRENT GAME DATA
-    Route::get('duels/active', [\App\Http\Controllers\Api\DuelController::class, 'active']
-
-//        function (Request $request) {
-//        return [
-//            'round' => 4,
-//            'your_points' => 260,
-//            'opponent_points' => 100,
-//            'status' => 'active',
-//            'cards' => config('game.cards'),
-//        ];
-//    }
-    );
+    Route::get('duels/active', [\App\Http\Controllers\Api\DuelController::class, 'active'])->name('duels.active');
 
     //User has just selected a card
-    Route::post('duels/action', [\App\Http\Controllers\Api\DuelController::class, 'action']
-//        function (Request $request) {
-//            return response()->json();
-//        }
-    );
+    Route::post('duels/action', [\App\Http\Controllers\Api\DuelController::class, 'action'])->name('duels.action');
 
     //DUELS HISTORY
-    Route::get('duels',  [\App\Http\Controllers\Api\DuelController::class, 'index']
-//        function (Request $request) {
-//        return [
-//            [
-//                "id" => 1,
-//                "player_name" => "Jan Kowalski",
-//                "opponent_name" => "Piotr Nowak",
-//                "won" => 0
-//            ],
-//            [
-//                "id" => 2,
-//                "player_name" => "Jan Kowalski",
-//                "opponent_name" => "Tomasz Kaczyński",
-//                "won" => 1
-//            ],
-//            [
-//                "id" => 3,
-//                "player_name" => "Jan Kowalski",
-//                "opponent_name" => "Agnieszka Tomczak",
-//                "won" => 1
-//            ],
-//            [
-//                "id" => 4,
-//                "player_name" => "Jan Kowalski",
-//                "opponent_name" => "Michał Bladowski",
-//                "won" => 1
-//            ],
-//        ];
-//    }
-    )
-    ;
+    Route::get('duels',  [\App\Http\Controllers\Api\DuelController::class, 'index'])->name('duels.index');
 
     //CARDS
-    Route::post('cards', [\App\Http\Controllers\Api\CardController::class, 'card']);
+    Route::post('cards', [\App\Http\Controllers\Api\CardController::class, 'card'])->name('cards');
 
     //USER DATA
-    Route::get('user-data', [\App\Http\Controllers\Api\UserController::class, 'data']
-
-//        function (Request $request) {
-//        return [
-//            'id' => 1,
-//            'username' => 'Test User',
-//            'level' => 1,
-//            'level_points' => '40/100',
-//            'cards' => config('game.cards'),
-//            'new_card_allowed' => true,
-//        ];
-//    }
-    );
+    Route::get('user-data', [\App\Http\Controllers\Api\UserController::class, 'data'])->name('user.data');
 });

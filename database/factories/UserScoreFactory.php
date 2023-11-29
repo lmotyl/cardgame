@@ -20,7 +20,7 @@ class UserScoreFactory extends Factory
 
         return [
             'level' => $level['level'],
-            'score' => $level['score']
+            'score' => $level['score_max']
         ];
     }
 }

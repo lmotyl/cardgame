@@ -48,7 +48,8 @@ class DuelController extends Controller
             $userLevel = $this->levelService->getLevelByScore($userScore);
             $opponent = $this->userService->getRandomByType(UserType::TYPE_CPU, $userLevel);
             if (!$opponent) {
-                $opponent = $this->userService->createRandomOpponent($userLevel);
+                $this->userService->createRandomOpponent($userLevel);
+                $opponent = $this->userService->getRandomByType(UserType::TYPE_CPU, $userLevel);
             }
 
             $this->duelService->create($user, $opponent);

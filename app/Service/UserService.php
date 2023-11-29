@@ -41,11 +41,12 @@ class UserService
 
     public function createRandomOpponent(LevelDto $level)
     {
-        return User::factory()
-            ->has(UserType::factory()->state(['type' => UserType::TYPE_CPU])->create())
-            ->has(UserScore::factory()->state(['level' => $level->level])->create())
-            ->count(1)
-            ->create();
+        $user = User::factory()
+            ->has(UserType::factory()->state(['type' => UserType::TYPE_CPU]))
+            ->has(UserScore::factory()->state(['level' => $level->level]))
+            ->create()
+        ;
+        return $user;
     }
 
 
